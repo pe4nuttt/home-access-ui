@@ -10,9 +10,26 @@ import styles from './AccessControlModals.module.scss';
 const cx = classNames.bind(styles);
 
 function AccessControlModals() {
-    const [isStep1, setIsStep1] = useState(false);
-    const [isStep2, setIsStep2] = useState(false);
+    const [isCallingModal, setIsCallingModal] = useState(false);
+    const [isConfirmModal, setIsConfirmModal] = useState(false);
     const [isStep3, setIsStep3] = useState(false);
+
+    const handleAcceptCalling = () => {
+        setIsCallingModal(false);
+        setIsConfirmModal(true);
+    };
+
+    const handleCloseCalling = () => {
+        setIsCallingModal(false);
+    };
+
+    const handleAcceptAccess = () => {};
+
+    const handleCloseAccess = () => {
+        setIsConfirmModal(false);
+    };
+
+    const [step, checkStep] = useState();
 
     return (
         // <div className={cx('container')}>
@@ -20,8 +37,16 @@ function AccessControlModals() {
         //     {step === 2 && <ConfirmAccessModal></ConfirmAccessModal>}
         // </div>
         <>
-            <CallingModal isOpen={isStep1}></CallingModal>
-            <ConfirmAccessModal isOpen={isStep2}></ConfirmAccessModal>
+            <CallingModal
+                isOpen={isCallingModal}
+                onAccept={handleAcceptCalling}
+                onClose={handleCloseCalling}
+            ></CallingModal>
+            <ConfirmAccessModal
+                isOpen={isConfirmModal}
+                onAccept={handleAcceptAccess}
+                onClose={handleCloseAccess}
+            ></ConfirmAccessModal>
             <AcceptAcessModal isOpen={isStep3}></AcceptAcessModal>
         </>
     );

@@ -1,7 +1,11 @@
 .body {
     display: flex;
-    height: 90vh;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
     align-items: center;
-    justify-content: center;
-    font-size: 3rem;
+    // font-size: 3rem;
+    padding: 60px 100px 40px;
+    max-width: 1200px;
+    margin: auto;
+    // background-color: #fbfbfb;
 }

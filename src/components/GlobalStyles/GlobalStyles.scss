@@ -1,19 +1,21 @@
 @import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;500;600;700;900&display=swap');
+
 
 :root {
-    --primary-color: #242424;
 }
 
 html {
-    font-size: 62.5%;
+    // font-size: 62.5%;
+    // font-size: 16px;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'PT Sans', sans-serif;
-
+    // font-family: 'PT Sans', sans-serif;
+    font-family: 'Public Sans', sans-serif !important;
 }
 
 body {
@@ -110,3 +112,45 @@ a[href] {
     border: 1px solid #cfcece;
   }
   
+
+// custom
+th, tr, td {
+  font-size: 1rem !important;
+  padding: 16px !important;
+  // line-height: 2.6rem !important;
+
+  // & div {
+   //   line-height: 2.6rem !important;
+  // }
+}
+
+th {
+  background-color: rgb(244, 246, 248) !important;
+  color: rgb(99, 115, 129) !important;
+  font-weight: 600 !important;
+}
+
+// tr, td {
+// }
+
+
+.MuiPaper-root, .MuiDataGrid-root {
+  // width: 100%;
+
+  & * {
+    // font-size: 1.6rem !important;
+    // line-height: 2.6rem !important;
+  }
+}
+
+.MuiTextField-root {
+  width: 100%;
+}
+
+.MuiSlider-root {
+  height: 10px !important;
+}
+
+button + button {
+  margin-left: 8px !important;
+}

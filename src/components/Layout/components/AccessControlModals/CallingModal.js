@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import ReactModal from 'react-modal';
 import Popup from 'reactjs-popup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '@/components/Button/Button';
-
-ReactModal.setAppElement(document.getElementById('app'));
 
 function CallingModal({ isOpen }) {
     const [open, setOpen] = useState(true);

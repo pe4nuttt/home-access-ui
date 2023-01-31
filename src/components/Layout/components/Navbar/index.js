@@ -1,110 +1,189 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTypo3 } from '@fortawesome/free-brands-svg-icons';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
-
-import Button from '@/components/Button/Button';
-// import PreferenceKeys from '~/utils/PreferenceKeys';
-// import { AuthContext } from '~/context/AuthProvider';
+import {
+    Box,
+    AppBar,
+    Avatar,
+    Button,
+    Tooltip,
+    Toolbar,
+    Menu,
+    MenuItem,
+    styled,
+    Typography,
+    IconButton,
+} from '@mui/material';
+import HouseIcon from '@mui/icons-material/House';
+import MenuIcon from '@mui/icons-material/Menu';
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 
 const cx = classNames.bind(styles);
 
+const StyledToolbar = styled(Toolbar)({
+    display: 'flex',
+    justifyContent: 'space-between',
+});
+
+const pages = [
+    {
+        label: 'How To',
+        path: '/how-to',
+    },
+    {
+        label: 'Get QR',
+        path: '/get-qr',
+    },
+    {
+        label: 'Tracking',
+        path: '/tracking',
+    },
+];
+
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 function Navbar() {
-    // const { isAuth, setIsAuth } = useContext(AuthContext);
-    const [isAuth, setIsAuth] = useState(true);
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const [click, setClick] = useState(false);
-    const [button, setButton] = useState(true);
-
-    const handleClick = () => setClick(!click);
-    const closeMobileMenu = () => setClick(false);
-
-    const showButton = () => {
-        if (window.innerWidth <= 960) {
-            setButton(false);
-        } else {
-            setButton(true);
-        }
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
     };
 
-    const handleSignOut = () => {
-        // setIsAuth(false);
-        // localStorage.removeItem(PreferenceKeys.login);
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
     };
 
-    useEffect(() => {
-        showButton();
-    }, []);
-
-    window.addEventListener('resize', showButton);
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
 
     return (
-        <>
-            <nav className={cx('navbar')}>
-                <div className={cx('container')}>
-                    <Link to="/" className={cx('logo')}>
-                        Home Access <FontAwesomeIcon icon={faTypo3} onClick={closeMobileMenu} />
-                    </Link>
-                    <div className={cx('menu-icon')} onClick={handleClick}>
-                        <FontAwesomeIcon icon={click ? faTimes : faBars}></FontAwesomeIcon>
-                    </div>
-                    <ul
-                        className={cx('nav-menu', {
-                            active: click,
-                        })}
+        <AppBar className={cx('nav')} position="sticky">
+            <StyledToolbar>
+                <Box>
+                    <Link
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            cursor: 'pointer',
+                        }}
+                        to="/"
                     >
-                        <li className={cx('nav-item')}>
-                            <Link to="/how-to" className={cx('nav-links')} onClick={closeMobileMenu}>
-                                How to
-                            </Link>
-                        </li>
-                        <li className={cx('nav-item')}>
-                            <Link to="/get-qr" className={cx('nav-links')} onClick={closeMobileMenu}>
-                                Get QR
-                            </Link>
-                        </li>
-                        <li className={cx('nav-item')}>
-                            <Link to="/tracking" className={cx('nav-links')} onClick={closeMobileMenu}>
-                                Tracking
-                            </Link>
-                        </li>
+                        <HouseIcon
+                            color="primary"
+                            sx={{
+                                display: { xs: 'inline-block', sm: 'inline-block' },
+                                mr: 1,
+                                height: '100%',
+                            }}
+                        />
+                        <Typography
+                            color="primary"
+                            sx={{
+                                display: { xs: 'none', sm: 'inline-block' },
+                            }}
+                            variant="h6"
+                        >
+                            Home Access
+                        </Typography>
+                    </Link>
+                </Box>
 
-                        <li className={cx('nav-item')}>
-                            {isAuth ? (
-                                <Link
-                                    to="/"
-                                    className={cx('nav-links-mobile')}
-                                    onClick={() => {
-                                        handleSignOut();
-                                        closeMobileMenu();
-                                    }}
-                                >
-                                    Sign out
-                                </Link>
-                            ) : (
-                                <Link to="/sign-up" className={cx('nav-links-mobile')} onClick={closeMobileMenu}>
-                                    Sign up
-                                </Link>
-                            )}
-                        </li>
-                    </ul>
+                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <IconButton
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleOpenNavMenu}
+                        color="inherit"
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorElNav}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        open={Boolean(anchorElNav)}
+                        onClose={handleCloseNavMenu}
+                        sx={{
+                            display: { xs: 'block', md: 'none' },
+                        }}
+                    >
+                        {pages.map((page) => (
+                            <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">{page.label}</Typography>
+                            </MenuItem>
+                        ))}
+                    </Menu>
+                </Box>
+                <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1, justifyContent: 'right' }}>
+                    {pages.map((page) => (
+                        <Typography variant="div" sx={{ my: 2, color: 'white', display: 'block' }}>
+                            <NavLink
+                                to={page.path}
+                                key={page.label}
+                                onClick={handleCloseNavMenu}
+                                // className={cx('nav-links')}
+                                className={({ isActive }) =>
+                                    cx('nav-links', {
+                                        active: isActive,
+                                    })
+                                }
+                                // style={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                {page.label}
+                            </NavLink>
+                        </Typography>
+                    ))}
+                </Box>
 
-                    {!isAuth && button && (
-                        <Button to="/auth/sign-in" buttonStyle="btn--outline">
-                            SIGN IN
-                        </Button>
-                    )}
-                    {isAuth && button && (
-                        <Button to="/" buttonStyle="btn--outline" onClick={handleSignOut}>
-                            SIGN OUT
-                        </Button>
-                    )}
-                </div>
-            </nav>
-        </>
+                <Box sx={{ marginLeft: '10px' }}>
+                    <Tooltip title="Open settings">
+                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                            <Avatar
+                                alt="Remy Sharp"
+                                src="https://img5.thuthuatphanmem.vn/uploads/2021/12/08/aaaaaaaa_093625302.jpg"
+                            />
+                        </IconButton>
+                    </Tooltip>
+                    <Menu
+                        sx={{ mt: '45px' }}
+                        id="menu-appbar"
+                        anchorEl={anchorElUser}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}
+                    >
+                        {settings.map((setting) => (
+                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <Typography textAlign="center">{setting}</Typography>
+                            </MenuItem>
+                        ))}
+                    </Menu>
+                </Box>
+            </StyledToolbar>
+        </AppBar>
     );
 }
 
