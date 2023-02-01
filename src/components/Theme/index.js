@@ -18,6 +18,24 @@ export const theme = createTheme({
         //         },
         //     },
         // },
+        MuiSnackbar: {
+            defaultProps: {
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+                onClose: () => {},
+            },
+        },
+        MuiAlert: {
+            defaultProps: {
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+                onClose: () => {},
+            },
+        },
         MuiButton: {
             styleOverrides: {
                 root: {

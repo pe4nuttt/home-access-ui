@@ -4,9 +4,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { theme } from './components/Theme';
-
+// import { SnackbarProvider } from './components/Snackbar';
+import { SnackbarProvider } from './components/Snackbar';
 import store from './redux/store';
-
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './components/GlobalStyles';
@@ -18,7 +18,9 @@ root.render(
             <ThemeProvider theme={theme}>
                 <Router>
                     <Provider store={store}>
-                        <App />
+                        <SnackbarProvider>
+                            <App />
+                        </SnackbarProvider>
                     </Provider>
                 </Router>
             </ThemeProvider>

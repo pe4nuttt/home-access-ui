@@ -19,7 +19,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { StyledPaper } from '@/components/Layout/components/Paper';
-
+import { useSnackbar } from 'notistack';
+import CustomCloseButton from '@/components/Snackbar/components/CustomCloseButton';
 import { useMemo } from 'react';
 import Layout from '@/components/Layout';
 import styles from './Tracking.module.scss';
@@ -205,6 +206,15 @@ function Tracking() {
         [],
     );
 
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+    const handleClick = () => {
+        enqueueSnackbar('This is a success message!', {
+            variant: 'success',
+            action: (key) => <CustomCloseButton onClick={() => closeSnackbar(key)}></CustomCloseButton>,
+        });
+    };
+
     return (
         <Layout>
             <h1>Tracking</h1>
@@ -248,7 +258,13 @@ function Tracking() {
                     <Button className={cx('reset-btn')} variant="contained" color="secondary">
                         Reset
                     </Button>
-                    <Button className={cx('search-btn')} startIcon={<SearchIcon />} variant="contained" color="primary">
+                    <Button
+                        className={cx('search-btn')}
+                        startIcon={<SearchIcon />}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleClick}
+                    >
                         Search
                     </Button>
                 </Box>
