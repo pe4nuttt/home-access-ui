@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { theme } from './components/Theme';
 // import { SnackbarProvider } from './components/Snackbar';
 import { SnackbarProvider } from './components/Snackbar';
+import { LoadingProvider } from './context/LoadingContext';
 import store from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -18,9 +19,11 @@ root.render(
             <ThemeProvider theme={theme}>
                 <Router>
                     <Provider store={store}>
-                        <SnackbarProvider>
-                            <App />
-                        </SnackbarProvider>
+                        <LoadingProvider>
+                            <SnackbarProvider>
+                                <App />
+                            </SnackbarProvider>
+                        </LoadingProvider>
                     </Provider>
                 </Router>
             </ThemeProvider>

@@ -13,7 +13,7 @@ function Layout({ children }) {
             <Navbar />
             <div className={cx('body')}>{children}</div>
             {/* <Footer /> */}
-            {/* <AccessControlModals></AccessControlModals> */}
+            <AccessControlModals></AccessControlModals>
         </div>
     );
 }

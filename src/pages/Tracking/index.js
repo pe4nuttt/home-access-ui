@@ -15,13 +15,14 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
+import CustomCloseButton from '@/components/Snackbar/components/CustomCloseButton';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { StyledPaper } from '@/components/Layout/components/Paper';
 import { useSnackbar } from 'notistack';
-import CustomCloseButton from '@/components/Snackbar/components/CustomCloseButton';
 import { useMemo } from 'react';
+import { useLoading } from '@/context/LoadingContext';
 import Layout from '@/components/Layout';
 import styles from './Tracking.module.scss';
 
@@ -206,13 +207,19 @@ function Tracking() {
         [],
     );
 
+    const { startLoading, endLoading } = useLoading();
+
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-    const handleClick = () => {
-        enqueueSnackbar('This is a success message!', {
-            variant: 'success',
-            action: (key) => <CustomCloseButton onClick={() => closeSnackbar(key)}></CustomCloseButton>,
-        });
+    const handleClick = async () => {
+        await startLoading();
+        setTimeout(() => {
+            endLoading();
+            enqueueSnackbar('This is a success message!', {
+                variant: 'success',
+                action: (key) => <CustomCloseButton onClick={() => closeSnackbar(key)}></CustomCloseButton>,
+            });
+        }, 3000);
     };
 
     return (

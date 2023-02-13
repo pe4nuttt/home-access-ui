@@ -154,3 +154,14 @@ th {
 button + button {
   margin-left: 8px !important;
 }
+
+.MuiDialog-paper {
+  .MuiDialogTitle-root, .MuiDialogActions-root {
+    padding: 24px !important;
+    font-weight: 700 !important;
+  }
+
+  .MuiDialogContent-root {
+    padding: 0px 24px 8px !important;
+  }
+}
