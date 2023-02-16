@@ -23,6 +23,7 @@ import { StyledPaper } from '@/components/Layout/components/Paper';
 import { useSnackbar } from 'notistack';
 import { useMemo } from 'react';
 import { useLoading } from '@/context/LoadingContext';
+// import Layout from '@/components/Layout';
 import Layout from '@/components/Layout';
 import styles from './Tracking.module.scss';
 
@@ -223,7 +224,7 @@ function Tracking() {
     };
 
     return (
-        <Layout>
+        <Box>
             <h1>Tracking</h1>
             {/* <Box className={cx('form')}> */}
             <StyledPaper sx={{ width: '100%', margin: '20px 0 40px' }}>
@@ -286,7 +287,7 @@ function Tracking() {
                     enableColumnFilters={false}
                 />
             </div>
-        </Layout>
+        </Box>
     );
 }
 

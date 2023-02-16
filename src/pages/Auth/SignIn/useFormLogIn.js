@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { login } from '@/apiServices/auth';
-import authSlice from '../AuthSlice';
+import authSlice from '../authSlice';
 
 // import { AuthContext } from '../../context/AuthProvider';
 // import { getAccount } from '~/apiServices';

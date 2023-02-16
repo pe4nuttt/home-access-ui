@@ -42,7 +42,7 @@ function Profile() {
     });
 
     return (
-        <Layout>
+        <Box>
             <h1>Profile</h1>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={4}>
@@ -134,7 +134,7 @@ function Profile() {
                     </StyledPaper>
                 </Grid>
             </Grid>
-        </Layout>
+        </Box>
     );
 }
 

@@ -165,3 +165,24 @@ button + button {
     padding: 0px 24px 8px !important;
   }
 }
+
+.MuiDialog-container .MuiPaper-root {
+  border-radius: 16px !important;
+}
+
+a {
+  color: inherit !important;
+}
+
+.nav-link.active {
+  color: rgb(0, 171, 85) !important;
+
+  & .MuiListItemButton-root {
+    background-color: rgba(0, 171, 85, 0.08) !important;
+  }
+  
+  & .MuiListItemText-root span {
+    font-weight: 600 !important;
+  }
+
+}

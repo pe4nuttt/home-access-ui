@@ -6,11 +6,7 @@ import Layout from '@/components/Layout';
 const cx = classNames.bind(styles);
 
 function HowTo() {
-    return (
-        <Layout>
-            <h1>How To</h1>
-        </Layout>
-    );
+    return <h1>How To</h1>;
 }
 
 export default HowTo;

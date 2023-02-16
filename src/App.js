@@ -7,7 +7,10 @@ import Layout from './components/Layout';
 import PrivateRoute from '@/routes/PrivateRoute';
 import { privateRoutes, publicRoutes } from './routes';
 import NotFound from './components/NotFound';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setMqttMessage } from './redux/appSlice';
+import accessSlice from './components/Layout/components/AccessControlModals/accessSlice';
 
 // const client = io('http://localhost:1883/');
 // client.on('connect', () => {
@@ -37,6 +40,8 @@ let client = mqtt.connect('ws://broker.emqx.io:8083/mqtt', {
 });
 
 function App() {
+    const dispatch = useDispatch();
+
     useEffect(() => {
         console.log(client);
         client.subscribe('Iot4', { qos: 0 }, (error) => {
@@ -45,9 +50,15 @@ function App() {
                 return;
             }
         });
-        client.publish('Iot4', 'dm toan connection demo123...!', { qos: 0, retain: false });
+        // client.publish('Iot4', 'dm toan connection demo123...!', { qos: 0, retain: false });
         client.on('message', (topic, message, packet) => {
-            console.log('Received message: ' + message.toString() + '\nOn topic: ' + topic);
+            // console.log('Received message: ' + message.toString() + '\nOn topic: ' + topic);
+            console.log(JSON.parse(message.toString()));
+            console.log(packet);
+            const mqttMsgObject = JSON.parse(message.toString());
+
+            dispatch(setMqttMessage(mqttMsgObject));
+            dispatch(accessSlice.actions.setIsCallingModal(true));
         });
     });
     return (
@@ -56,7 +67,17 @@ function App() {
                 {publicRoutes.map((route) => {
                     const Page = route.component;
 
-                    return <Route key={route.id} path={route.path} element={<Page />} />;
+                    return (
+                        <Route
+                            key={route.id}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
                 })}
 
                 {privateRoutes.map((route) => {
@@ -67,7 +88,9 @@ function App() {
                             path={route.path}
                             element={
                                 <PrivateRoute>
-                                    <Page />
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
                                 </PrivateRoute>
                             }
                         />

@@ -23,7 +23,7 @@ function GetQr() {
     };
 
     return (
-        <Layout>
+        <Box>
             {/* <h1 className={cx('header')}>Create QR Code</h1> */}
             {/* <div classNames={cx('body')}>
                 <div className={cx('qr-code')}>
@@ -141,7 +141,7 @@ function GetQr() {
                     </Box>
                 </Grid>
             </Grid>
-        </Layout>
+        </Box>
     );
 }
 
