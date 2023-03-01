@@ -1,6 +1,58 @@
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
+    typography: {
+        h1: {
+            fontSize: 64,
+            lineHeight: '80px',
+            fontWeight: 800,
+        },
+        h2: {
+            fontSize: 48,
+            lineHeight: '64px',
+            fontWeight: 800,
+        },
+        h3: {
+            fontSize: 32,
+            lineHeight: '48px',
+            fontWeight: 800,
+        },
+        h4: {
+            fontSize: 24,
+            lineHeight: '36px',
+            fontWeight: 700,
+        },
+        h5: {
+            fontSize: 20,
+            lineHeight: '30px',
+            fontWeight: 600,
+        },
+        h6: {
+            fontSize: 18,
+            lineHeight: '28px',
+            fontWeight: 600,
+        },
+        subtitle1: {
+            fontSize: 16,
+            fontWeight: 600,
+            lineHeight: '24px',
+        },
+        subtitle2: {
+            fontSize: 14,
+            fontWeight: 600,
+            lineHeight: '22px',
+        },
+        body1: {
+            fontSize: 16,
+            fontWeight: 400,
+            lineHeight: '24px',
+        },
+        body2: {
+            fontSize: 14,
+            fontWeight: 400,
+            lineHeight: '22px',
+        },
+    },
     components: {
         // MuiPaper: {
         //     styleOverrides: {
@@ -45,6 +97,7 @@ export const theme = createTheme({
                 },
             },
         },
+        MuiTextField: {},
     },
 
     palette: {

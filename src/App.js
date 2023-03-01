@@ -87,11 +87,11 @@ function App() {
                             key={route.id}
                             path={route.path}
                             element={
-                                <PrivateRoute>
-                                    <Layout>
-                                        <Page />
-                                    </Layout>
-                                </PrivateRoute>
+                                // <PrivateRoute>
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                                // </PrivateRoute>
                             }
                         />
                     );
