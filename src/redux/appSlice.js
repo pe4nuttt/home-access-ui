@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const appSlice = createSlice({
     name: 'app',
-    initialState: { mqttMessage: {} },
+    initialState: { mqttMessage: {}, topic: 'Iot4' },
     reducers: {
         setMqttMessage(state, action) {
             state.mqttMessage = action.payload;

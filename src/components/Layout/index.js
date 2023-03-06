@@ -212,7 +212,7 @@ export default function Layout({ children }) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Mini variant drawer
+                        Indoor Device
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -288,31 +288,6 @@ export default function Layout({ children }) {
                                 </ListItemButton>
                             </DrawerListItem>
                         </NavLink>
-                    ))}
-                </DrawerList>
-                <Divider />
-                <DrawerList open={open}>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <DrawerListItem key={text} disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: open ? 'initial' : 'center',
-                                    px: 2.5,
-                                }}
-                            >
-                                <ListItemIcon
-                                    sx={{
-                                        minWidth: 0,
-                                        mr: open ? 3 : 'auto',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                            </ListItemButton>
-                        </DrawerListItem>
                     ))}
                 </DrawerList>
             </Drawer>
